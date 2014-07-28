@@ -124,4 +124,4 @@ For this project, and all other projects, you must do a project report in result
   - I will clone your repo after the due date
 
 ## Credits
-	Assignment modified by Min Sun based on James Hays and Derek Hoiem's previous developed projects
+	Assignment modified by Min Sun based on Fei-Fei Li and Ali Farhadi's previous developed projects
