@@ -6,15 +6,15 @@ img1 = imread('./data/uttower1.jpg');
 img2 = imread('./data/uttower2.jpg');
 
 %% Feature detection
-[feature1, pyr1, imp1] = detect_features(img1);
-pointsInImage1 = feature1(:, 1:2);
-pointsInPyramid1 = feature1(:, 8:9);
-desc1 = SIFTDescriptor(imp1, pointsInPyramid1, feature1(:,3));
+I = single(rgb2gray(img1));
+[f,d] = vl_sift(I) ;
+pointsInImage1 = double(f(1:2,:)');
+desc1 = double(d');
 
-[feature2, pyr2, imp2] = detect_features(img2);
-pointsInImage2 = feature2(:, 1:2);
-pointsInPyramid2 = feature2(:, 8:9);
-desc2 = SIFTDescriptor(imp2, pointsInPyramid2, feature2(:,3));
+I = single(rgb2gray(img2));
+[f,d] = vl_sift(I) ;
+pointsInImage2 = double(f(1:2,:)');
+desc2 = double(d');
 
 %% Matching
 M = SIFTSimpleMatcher(desc1, desc2);

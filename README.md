@@ -41,6 +41,9 @@ In this programming assignment, we will match SIFT keypoints from multiple image
 ##Details
 Now we give details of each step:
 
+### Get SIFT points and descriptors
+Download [VLFeat 0.9.17 binary package](http://www.vlfeat.org/download.html). We are only using the `vl_sift` function. VL Feat Matlab reference: [http://www.vlfeat.org/matlab/matlab.html](http://www.vlfeat.org/matlab/matlab.html)
+
 ### Matching SIFT Descriptors 
 Edit `SIFTSimpleMatcher.m` to calculate the Euclidean distance between a given SIFT descriptor from im- age 1 and all SIFT descriptors from image 2. Then use this to determine if there’s a good match: if the distance to the closest vector is significantly (by a factor which is given) smaller than the distance to the second-closest, we call it a match. The output of the function is an array where each row holds the indices of one pair of matching descriptors.
 

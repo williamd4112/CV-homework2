@@ -34,10 +34,10 @@ disp('Images loaded. Beginning feature detection...');
 DESCRIPTOR = cell(1, length(imgList));
 POINT_IN_IMG = cell(1, length(imgList));
 for i = 1 : length(imgList),
-    [feature, ~, imp] = detect_features(IMAGES{i});
-    POINT_IN_IMG{i} = feature(:, 1:2);
-    pointInPyramid = feature(:, 8:9);
-    DESCRIPTOR{i} = SIFTDescriptor(imp, pointInPyramid, feature(:,3));
+	I = single(rgb2gray(IMAGES{i}));
+	[f,d] = vl_sift(I) ;
+	POINT_IN_IMG{i} = double(f(1:2,:)');
+	DESCRIPTOR{i} = double(d');
 end
 
 %% Compute Transformation
