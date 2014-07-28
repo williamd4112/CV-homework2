@@ -1,7 +1,7 @@
 <center>
-<img src="./index_files/hybrid_image.jpg" width="410" height="361">
+<img src="./index_files/AllStitched.jpg" width="410" height="361">
 <br>
-(Look at image on right from very close, then from far away.)
+(Panorama image of Mt. Rainer in Washington.)
 </center>
 
 # Project 2: Panorama Stitching
@@ -11,15 +11,17 @@
 * Required files: results/index.md, and code/
 
 ##Overview
-
-<p>The goal of this assignment is to write an image filtering function and use it to create <a href="http://cvcl.mit.edu/hybridimage.htm">hybrid images</a> using a simplified version of the SIGGRAPH 2006 <a href="http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf">paper</a> by Oliva, Torralba, and Schyns.
-<i>Hybrid images</i> are static images that change in interpretation as a function of the viewing distance.
-The basic idea is that high frequency tends to dominate perception when it is available, but, at a distance, only the low frequency (smooth) part of the signal can be seen.
-By blending the high frequency portion of one image with the low-frequency portion of another, you get a hybrid image that leads to different interpretations at different distances.
-</p>
-<br>
+Panoramic stitching is an early success of computer vision. Matthew Brown and David G. Lowe published a famous [panoramic image stitching paper](http://www.cs.ubc.ca/~lowe/papers/07brown.pdf) in 2007. Since then, automatic panorama stitching technology has been widely adopted in many applications such as Google Street View, panorama photos on smartphones, and stitching software such as [Photosynth](http://photosynth.net/) and [AutoStitch](http://cs.bath.ac.uk/brown/autostitch/autostitch.html). This homework will help you create your own panorama stitching software so you can go out and have fun :)
 
 ##Details
+
+In this programming assignment, we will match SIFT keypoints from multiple images to build a single panoramic image. This will involve several tasks:
+* Detect SIFT points and extract SIFT descriptor for each keypoint in an image using vlfeat.
+* Compare two sets of SIFT descriptors coming from two different images and find matching keypoints.
+* Given a list of matching keypoints, use least-square method to find the affine transformation matrix that maps positions in image 1 to positions in image 2.
+* Use RANSAC to give a more robust estimate of affine transformation matrix.
+* Given that transformation matrix, use it to transform (shift, scale, or skew) image 1 and overlay it on top of image 2, forming a panorama. (This is done for you.)
+* Stitch multiple images together under a simplified case of real-world scenario.
 
 <p>
 This project is intended to familiarize you with MATLAB and image filtering. Once you have created an image filtering function, it is relatively straightforward to construct hybrid images. If you don't already know MATLAB, you will find this <a href="http://cs.brown.edu/courses/csci1430/docs/matlab-tutorial/">tutorial on MATLAB</a> helpful.
