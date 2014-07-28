@@ -26,6 +26,7 @@ In this programming assignment, we will match SIFT keypoints from multiple image
 <img src="./index_files/Rainier2.png" width="200" >
 <br>
 (Left: image 1 & Right: image 2)
+<br>
 <img src="./index_files/Stitched.png" width="410" >
 <br>
 (Stitched image)
