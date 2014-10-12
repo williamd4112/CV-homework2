@@ -1,11 +1,3 @@
-<head>
-...
-    <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-...
-</head>
-
 <center>
 <img src="./index_files/AllStitched.png" width="410" >
 <br>
@@ -15,18 +7,27 @@
 # Project 2: Panorama Stitching
 
 ## Brief
-* Due: TBA
+* Due: Oct. 30, 11:59pm.
 * Required files: results/index.md, and code/
 
 ##Overview
 Panoramic stitching is an early success of computer vision. Matthew Brown and David G. Lowe published a famous [panoramic image stitching paper](http://www.cs.ubc.ca/~lowe/papers/07brown.pdf) in 2007. Since then, automatic panorama stitching technology has been widely adopted in many applications such as Google Street View, panorama photos on smartphones, and stitching software such as [Photosynth](http://photosynth.net/) and [AutoStitch](http://cs.bath.ac.uk/brown/autostitch/autostitch.html).
 
 In this programming assignment, we will match SIFT keypoints from multiple images to build a single panoramic image. This will involve several tasks:
-* Detect SIFT points and extract SIFT descriptor for each keypoint in an image using vlfeat.
-* Compare two sets of SIFT descriptors coming from two different images and find matching keypoints (`SIFTSimpleMatcher.m`).
-* Given a list of matching keypoints, use least-square method to find the affine transformation matrix that maps positions in image 1 to positions in image 2 (`ComputeAffineMatrix.m`).
-* Use RANSAC to give a more robust estimate of affine transformation matrix (`RANSACFit.m`).
-* Given that transformation matrix, use it to transform (shift, scale, or skew) image 1 and overlay it on top of image 2, forming a panorama. (This is done for you.)
+
+* Detect SIFT points and extract SIFT descriptor for each keypoint in an image using vlfeat.
+
+
+* Compare two sets of SIFT descriptors coming from two different images and find matching keypoints (`SIFTSimpleMatcher.m`).
+
+
+* Given a list of matching keypoints, use least-square method to find the affine transformation matrix that maps positions in image 1 to positions in image 2 (`ComputeAffineMatrix.m`).
+
+
+* Use RANSAC to give a more robust estimate of affine transformation matrix (`RANSACFit.m`).
+
+
+* Given that transformation matrix, use it to transform (shift, scale, or skew) image 1 and overlay it on top of image 2, forming a panorama. (This is done for you.)
 <center>
 <img src="./index_files/Rainier1.png" width="200" >
 <img src="./index_files/Rainier2.png" width="200" >
@@ -36,7 +37,9 @@ In this programming assignment, we will match SIFT keypoints from multiple image
 <img src="./index_files/Stitched.png" width="410" >
 <br>
 (Stitched image)
-</center>* Stitch multiple images together under a simplified case of real-world scenario ('MultipleStitch.m').
+</center>
+
+* Stitch multiple images together under a simplified case of real-world scenario ('MultipleStitch.m').
 
 ##Details
 Now we give details of each step:
@@ -57,8 +60,12 @@ You can calculate this entirely with matrix math if you use the `repmat` command
 
 
 ### Fitting the Transformation Matrix
-We now have a list of matched keypoints across the two images! We will use this to find a transformationmatrix that maps an image 1 point to the corresponding coordinates in image 2. In other words, if the point\\([x_1, y_1]\\) in image 1 matches with \\([x_2, y_2]\\) in image 2, we need to find a transformation matrix H such that\\[
-[x_2 y_2 1] = [x_1 y_1 1]H'\\]
+We now have a list of matched keypoints across the two images! We will use this to find a transformation
+matrix that maps an image 1 point to the corresponding coordinates in image 2. In other words, if the point
+\\([x_1, y_1]\\) in image 1 matches with \\([x_2, y_2]\\) in image 2, we need to find a transformation matrix H such that
+\\[
+[x_2 y_2 1] = [x_1 y_1 1]H'
+\\]
 With a sufficient number of points, MATLAB can solve for the best H for us. Edit `ComputeAffineMatrix.m` to calculate H given the list of matching points. Run the provided `EvaluateAffineMatrix.m` to check your implementation.
 
 Hints: 1. homogeneous coordinates; 2. MATLAB “backslash” command.
@@ -81,11 +88,15 @@ Given a sequence of m images (e.g., yosemite*.jpg)
 Img_1, Img_2,...,Img_m
 \\]
 
-our code takes every neighboring pair of images and computes the transformation matrix which converts points from the coordinate frame of \\(Img_i\\) to the frame of \\(Img_{i+1}\\). (It does this by simply calling your code on each pair.)We then select a reference image \\(Img_r\\). We want our final panorama image to be in the coordinate frame of \\(Img_r\\). So, for each \\(Img_i\\) that is not the reference image, we need
-a transformation matrix that will convert points in frame i to frame ref. (MATLAB can then take this transformation matrix and transform the images for us.)Your task is to implement the function `makeTransformToReferenceFrame` in `MultipleStitch.m`. You are given the list of matrices which convert each frame i to frame i+1. You must use these matrices to construct a matrix which will convert the given frame into the given reference frame.
+our code takes every neighboring pair of images and computes the transformation matrix which converts points from the coordinate frame of \\(Img_i\\) to the frame of \\(Img_{i+1}\\). (It does this by simply calling your code on each pair.)
+We then select a reference image \\(Img_r\\). We want our final panorama image to be in the coordinate frame of \\(Img_r\\). So, for each \\(Img_i\\) that is not the reference image, we need
+a transformation matrix that will convert points in frame i to frame ref. (MATLAB can then take this transformation matrix and transform the images for us.)
+Your task is to implement the function `makeTransformToReferenceFrame` in `MultipleStitch.m`. You are given the list of matrices which convert each frame i to frame i+1. You must use these matrices to construct a matrix which will convert the given frame into the given reference frame.
 
-Hints: The inverse of a transformation matrix has the reverse effect. Please use Matlab’s pinv functionwhenever you want to compute matrix inverse. pinv is more robust than inv.
-After finishing this part, you can check your code by running `StitchTester.m`. 
+Hints: The inverse of a transformation matrix has the reverse effect. Please use Matlab’s pinv function
+whenever you want to compute matrix inverse. pinv is more robust than inv.
+
+After finishing this part, you can check your code by running `StitchTester.m`. 
 
 #### Stitching unordered sequence of images (extra credit)
 Given an unordered set of m images (e.g., Rainier*.jpg), how can we find the 1. reference image, and 2 the most robust transformation to the reference image (bundle adjustment).
