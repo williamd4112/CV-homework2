@@ -68,7 +68,7 @@ matrix that maps an image 1 point to the corresponding coordinates in image 2. I
 \\]
 With a sufficient number of points, MATLAB can solve for the best H for us. Edit `ComputeAffineMatrix.m` to calculate H given the list of matching points. Run the provided `EvaluateAffineMatrix.m` to check your implementation.
 
-Hints: 1. homogeneous coordinates; 2. MATLAB “backslash” command.
+Hints: 1. MATLAB “backslash” command.
 
 ### RANSAC
 Rather than directly feeding all of our SIFT keypoint matches into `ComputeAffineMatrix.m`, we will use RANSAC (“RANdom SAmple Consensus”) to select only “inliers” to use to compute the transformation matrix. In this case, inliers are pairs whose relationship is described by the same transformation matrix. We have implemented RANSAC for you, except for the cost function which determines how well two points are related by a given matrix H. Edit the `ComputeError()` function in `RANSACFit.m` to find the Euclidean distance between Hp1 and p2:
@@ -105,7 +105,7 @@ Hint: described in [panoramic image stitching paper](http://www.cs.ubc.ca/~lowe/
 
 ## Extra Points
 * +2 pts: If you make your code publicly available.
-* +2 pts: If you comment on pull request from students who fork the homework. Make sure you send me a screenshot of the comments to me.
+* +2 pts: If you comment on pull request from students who fork the homework.
 * +5 pts: If you Stitching unordered sequence of images.
 * +2 pts: Impressive panorama examples.
 
