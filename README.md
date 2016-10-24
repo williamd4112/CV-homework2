@@ -7,7 +7,7 @@
 # Project 2: Panorama Stitching
 
 ## Brief
-* Due: Nov. 4
+* Due: Nov. 9
 * Required files: results/index.md, and code/
 
 ##Overview
