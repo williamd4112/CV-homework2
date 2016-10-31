@@ -98,6 +98,14 @@ function dists = ComputeError(H, pt1, pt2, match)
     % pt1(match(2,1),:), etc. (You may use 'for' loops if this is too
     % confusing, but understanding it will make your code simple and fast.)
     dists = zeros(size(match,1),1);
+    pt1_match = pt1(match(:, 1), :);
+    pt2_match = pt2(match(:, 2), :);
+    N = size(pt1_match, 1);
+    pt1_ = transpose(pt1_match);
+    pt2_ = transpose(pt2_match);
+    pt1_h = [pt1_; ones(1, N)];
+    pt2_h = [pt2_; ones(1, N)];
+    dists = transpose(sqrt(sum(((pt2_h - H * pt1_h).^2))));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
