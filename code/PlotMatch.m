@@ -73,7 +73,7 @@ function h= PlotMatch(I1,I2,P1,P2,matches,varargin)
 % --------------------------------------------------------------------
 %                                                  Check the arguments
 % --------------------------------------------------------------------
-
+matches = transpose(matches); 
 stack='h' ;
 interactive=0 ;
 only_interactive=0 ;
