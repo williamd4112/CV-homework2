@@ -31,8 +31,14 @@ function match = SIFTSimpleMatcher(descriptor1, descriptor2, thresh)
 %                                YOUR CODE HERE:                               %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+    distance = pdist2(descriptor1, descriptor2);
+    distance_t = transpose(distance);
+    [distance_sort_value, distance_sort_index] = sort(distance_t);
+    pairs = [1:1:size(distance, 1); distance_sort_index(1,:); distance_sort_value(1,:) ./ distance_sort_value(2,:)];
+    match_index = int32(find(pairs(3,:) < thresh));
+    pairs_t = transpose(pairs);
+    match = pairs_t(match_index, 1:2);
+    
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
