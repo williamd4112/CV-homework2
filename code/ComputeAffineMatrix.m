@@ -19,8 +19,10 @@ function H = ComputeAffineMatrix( Pt1, Pt2 )
     end
     
     % Convert the input points to homogeneous coordintes.
-    P1 = [Pt1';ones(1,N)];
-    P2 = [Pt2';ones(1,N)];
+    Pt1_ = transpose(Pt1);
+    Pt2_ = transpose(Pt2);
+    P1 = [Pt1_;ones(1,N)];
+    P2 = [Pt2_;ones(1,N)];
 
     % Now, we must solve for the unknown H that satisfies H*P1=P2
     % But MATLAB needs a system in the form Ax=b, and A\b solves for x.
@@ -38,7 +40,7 @@ function H = ComputeAffineMatrix( Pt1, Pt2 )
 %                     above, then convert it to the final H                    %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+    H = transpose(transpose(P1)\transpose(P2));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %       END OF YOUR CODE                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
