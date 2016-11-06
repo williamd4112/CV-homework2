@@ -59,23 +59,56 @@ The project is related to
 		* change input image in StichTester.m
 
 ### Results
-
+* Run StitchTester with default settings
 <table border=1>
 <tr>
 <td>
 <img src="Rainier.png" />
 </td>
+</tr>
+<tr>
 <td>
 <img src="uttower.png" />
 </td>
+</tr>
+<tr>
 <td>
 <img src="yosemite.jpg" />
 </td>
+</tr>
+<tr>
 <td>
 <img src="Hanging.png" />
 </td>
+</tr>
+<tr>
 <td>
 <img src="MelakwaLake.png"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="beach.png"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="california.png"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="house.png"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="riverside.png"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="sac.png"/>
 </td>
 </tr>
 
