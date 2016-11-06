@@ -10,6 +10,7 @@ The project is related to
 ## Implementation
 1. SIFT Feature extraction
 	* Use 'vl_sift' to extract SIFT features
+	* Result
 	<img src="sift.png"/>
 2. SIFT Feature matching
 	1. Compute Euclidean distance in each pair
@@ -24,6 +25,8 @@ The project is related to
 3. Compute affine matrix
 	* We have H * P1 = P2
 	* Compute H = (P1' \ P2')'
+	* Result
+	<img src="transform_tester_result.jpg"/>
 4. RANSAC affine matrix computation
 	1. Transform points in P1 to P2 with H
 	2. Compute sum of error (Euclidean distance)
@@ -47,26 +50,32 @@ The project is related to
 
 ## Installation
 * Other required packages.
+	* vlfeat
 * How to compile from source?
+	1. run('VLFEATROOT/toolbox/vl_setup')
+		* VLFEATROOT is your vlfeat installtion directory
+	2. cd 'code'
+	3. Run 'StitchTester'
+		* change input image in StichTester.m
 
 ### Results
 
 <table border=1>
 <tr>
 <td>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg"  width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
+<img src="Rainier.png" />
 </td>
-</tr>
-
-<tr>
 <td>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg"  width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
-<img src="placeholder.jpg" width="24%"/>
+<img src="uttower.png" />
+</td>
+<td>
+<img src="yosemite.jpg" />
+</td>
+<td>
+<img src="Hanging.png" />
+</td>
+<td>
+<img src="MelakwaLake.png"/>
 </td>
 </tr>
 
