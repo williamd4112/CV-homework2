@@ -11,6 +11,7 @@ H = ComputeAffineMatrix(srcPt, dstPt);
 
 %% Load data and check solution
 load('../checkpoint/Affine_ref.mat');
+
 error = sum(sum((H-solution).^2));
 disp(['Difference from reference solution: ' num2str(error)]);
 
